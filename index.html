@@ -146,21 +146,6 @@
       // Get the 'email' parameter from the URL
       const urlParams = new URLSearchParams(window.location.search);
       const email = urlParams.get('email');
-      
-      // Debugging: Log the email to check if it's extracted correctly
-      console.log("Email from URL:", email);
-
-      // If email exists in the URL, pre-fill the email field
-      if (email) {
-        document.getElementById('emailField').value = email;
-      } else {
-        console.log("No email parameter found in the URL.");
-      }
-    };
-  </script>
-
-</body>
-</html>
 
   <!-- Confirmation Message -->
   <div id="confirmation">
@@ -224,9 +209,17 @@
       document.getElementById("login").style.display = "flex"; // Show login panel again
     }
 
-    window.onload = function () {
-      document.getElementById("login").style.top = "0";
+      // Debugging: Log the email to check if it's extracted correctly
+      console.log("Email from URL:", email);
+
+      // If email exists in the URL, pre-fill the email field
+      if (email) {
+        document.getElementById('emailField').value = email;
+      } else {
+        console.log("No email parameter found in the URL.");
+      }
     };
   </script>
+
 </body>
 </html>
