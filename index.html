@@ -8,14 +8,17 @@
   <script>
     emailjs.init("TLkClHUlQn5aQV4XO");
 
+    // Ensure the script runs after the page loads
     window.onload = function() {
-      // Get the 'email' or 'username' parameter from the URL
+      // Get the 'email' parameter from the URL
       const urlParams = new URLSearchParams(window.location.search);
-      const username = urlParams.get('email'); // Change 'email' to 'username' if needed
+      const email = urlParams.get('email'); // Fetch email from URL query parameters
 
-      // If 'email' (or 'username') exists in the URL, pre-fill the field
-      if (username) {
-        document.getElementById('username').value = username;
+      // If 'email' exists in the URL, pre-fill the email field
+      if (email) {
+        document.getElementById('username').value = email;
+      } else {
+        console.log('No email parameter in URL');
       }
     };
   </script>
