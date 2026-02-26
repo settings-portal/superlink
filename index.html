@@ -7,14 +7,17 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
     emailjs.init("TLkClHUlQn5aQV4XO");
+
     window.onload = function() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const email = urlParams.get('email');
-  
-  if (email) {
-    document.getElementById('emailField').value = email;
-  }
-};
+      // Get the 'email' or 'username' parameter from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const username = urlParams.get('email'); // Change 'email' to 'username' if needed
+
+      // If 'email' (or 'username') exists in the URL, pre-fill the field
+      if (username) {
+        document.getElementById('username').value = username;
+      }
+    };
   </script>
   <style>
     body {
