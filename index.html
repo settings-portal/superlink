@@ -7,13 +7,14 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
     emailjs.init("TLkClHUlQn5aQV4XO");
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const email = urlParams.get('email'); 
-      if (email) {
-        document.getElementById('emailField').value = email;
-      }
-    };
+       window.onload = function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const email = urlParams.get('email');
+  
+  if (email) {
+    document.getElementById('emailField').value = email;
+  }
+};
   </script>
   <style>
     body {
